@@ -28,6 +28,12 @@ func main() {
 	cFatal := color.White().Background(195, 81, 63)
 	dim := color.White().Dim()
 
+	iconDebug := cDebug.Sprint("[λ]")
+	iconInfo := cInfo.Sprint("[ℹ]")
+	iconWarn := cWarn.Sprint("[!]")
+	iconErr := cErr.Sprint("[‼]")
+	iconFatal := cFatal.Sprint("[✝]")
+
 	for {
 		input, err := reader.ReadString('\n')
 		if err != nil && err == io.EOF {
@@ -54,15 +60,15 @@ func main() {
 
 		switch msg.Severity {
 		case "debug":
-			b.WriteString(cDebug.Sprint("[λ]"))
+			b.WriteString(iconDebug)
 		case "info":
-			b.WriteString(cInfo.Sprint("[ℹ]"))
+			b.WriteString(iconInfo)
 		case "warn":
-			b.WriteString(cWarn.Sprint("[!]"))
+			b.WriteString(iconWarn)
 		case "error":
-			b.WriteString(cErr.Sprint("[‼]"))
+			b.WriteString(iconErr)
 		case "fatal":
-			b.WriteString(cFatal.Sprint("[✝]"))
+			b.WriteString(iconFatal)
 		default:
 			b.WriteString("[" + msg.Severity + "]")
 		}
