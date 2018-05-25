@@ -1,7 +1,0 @@
-{
-  "severity": "info",
-  "time": "2018-05-25T16:39:33.549+0100",
-  "caller": "app/app.go:66",
-  "message": "application running",
-  "port": ":9002"
-}
