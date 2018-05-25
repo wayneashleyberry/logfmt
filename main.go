@@ -46,13 +46,13 @@ func main() {
 		var msg message
 		err = json.Unmarshal([]byte(input), &msg)
 		if err != nil {
-			fmt.Println(input)
+			fmt.Print(input)
 			continue
 		}
 
 		t, err := time.Parse("2006-01-02T15:04:05.000-0700", msg.Time)
 		if err != nil {
-			fmt.Println(input)
+			fmt.Print(input)
 			continue
 		}
 
