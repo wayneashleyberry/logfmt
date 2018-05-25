@@ -26,13 +26,16 @@ func main() {
 	cWarn := color.White().Background(235, 155, 63)
 	cErr := color.White().Background(222, 134, 77)
 	cFatal := color.White().Background(195, 81, 63)
-	dim := color.White().Dim()
 
 	iconDebug := cDebug.Sprint("[λ]")
-	iconInfo := cInfo.Sprint("[ℹ]")
+	iconInfo := cInfo.Sprint("[i]")
 	iconWarn := cWarn.Sprint("[!]")
 	iconErr := cErr.Sprint("[‼]")
 	iconFatal := cFatal.Sprint("[✝]")
+
+	white := color.Color(255, 255, 255)
+	dim := color.Color(140, 140, 140)
+	superDim := color.Color(80, 80, 80)
 
 	for {
 		input, err := reader.ReadString('\n')
@@ -75,13 +78,13 @@ func main() {
 		b.WriteString(" ")
 		b.WriteString(dim.Sprint(t.String()))
 		b.WriteString(" ")
-		b.WriteString(msg.Message)
+		b.WriteString(white.Sprint(msg.Message))
 
 		for k, v := range fields {
-			if k == "severity" || k == "time" || k == "caller" || k == "message" {
+			if k == "severity" || k == "time" || k == "message" {
 				continue
 			}
-			b.WriteString(dim.Sprint(" " + k + "=" + v))
+			b.WriteString(superDim.Sprint(" " + k + "=" + v))
 		}
 
 		fmt.Println(b.String())
