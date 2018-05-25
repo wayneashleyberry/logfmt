@@ -6,18 +6,28 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"strings"
 	"time"
+
+	"github.com/wayneashleyberry/truecolor/pkg/color"
 )
 
 type message struct {
 	Severity string `json:"severity"`
 	Time     string `json:"time"`
-	Caller   string `json:"caller"`
 	Message  string `json:"message"`
 }
 
 func main() {
 	reader := bufio.NewReader(os.Stdin)
+
+	cDebug := color.White().Background(76, 117, 217)
+	cInfo := color.White().Background(127, 167, 244)
+	cWarn := color.White().Background(235, 155, 63)
+	cErr := color.White().Background(222, 134, 77)
+	cFatal := color.White().Background(195, 81, 63)
+	dim := color.White().Dim()
+
 	for {
 		input, err := reader.ReadString('\n')
 		if err != nil && err == io.EOF {
@@ -37,9 +47,37 @@ func main() {
 			continue
 		}
 
+		var b strings.Builder
+
 		var fields map[string]string
 		err = json.Unmarshal([]byte(input), &fields)
 
-		fmt.Printf("%s [%s] - %s (%s)\n", t, msg.Severity, msg.Message, msg.Caller)
+		switch msg.Severity {
+		case "debug":
+			b.WriteString(cDebug.Sprint("[λ]"))
+		case "info":
+			b.WriteString(cInfo.Sprint("[ℹ]"))
+		case "warn":
+			b.WriteString(cWarn.Sprint("[!]"))
+		case "error":
+			b.WriteString(cErr.Sprint("[‼]"))
+		case "fatal":
+			b.WriteString(cFatal.Sprint("[✝]"))
+		default:
+			b.WriteString("[" + msg.Severity + "]")
+		}
+		b.WriteString(" ")
+		b.WriteString(dim.Sprint(t.String()))
+		b.WriteString(" ")
+		b.WriteString(msg.Message)
+
+		for k, v := range fields {
+			if k == "severity" || k == "time" || k == "caller" || k == "message" {
+				continue
+			}
+			b.WriteString(dim.Sprint(" " + k + "=" + v))
+		}
+
+		fmt.Println(b.String())
 	}
 }

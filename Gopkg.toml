@@ -28,3 +28,7 @@
 [prune]
   go-tests = true
   unused-packages = true
+
+[[constraint]]
+  name = "github.com/wayneashleyberry/truecolor"
+  version = "1.0.0"
