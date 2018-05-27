@@ -41,6 +41,7 @@ func main() {
 	for {
 		input, err := reader.ReadString('\n')
 		if err != nil && err == io.EOF {
+			println(input)
 			break
 		}
 
