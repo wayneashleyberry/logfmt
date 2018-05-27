@@ -81,7 +81,7 @@ func main() {
 		b.WriteString(dim.Sprint(t.String()))
 		b.WriteString(" ")
 		b.WriteString(white.Sprint(msg.Message))
-		b.WriteString(superDim.Sprint(" caller=" + msg.Caller))
+		b.WriteString(superDim.Sprint(" " + msg.Caller))
 
 		var stacktrace string
 
@@ -102,6 +102,15 @@ func main() {
 			floatval, floatok := v.(float64)
 			if floatok {
 				b.WriteString(superDim.Sprint(" " + k + "=" + fmt.Sprintf("%.2f", floatval)))
+			}
+
+			boolval, boolok := v.(bool)
+			if boolok {
+				var stringbool = "true"
+				if !boolval {
+					stringbool = "false"
+				}
+				b.WriteString(superDim.Sprint(" " + k + "=" + stringbool))
 			}
 		}
 
