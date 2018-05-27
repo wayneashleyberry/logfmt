@@ -38,30 +38,37 @@ var superDim = color.Color(80, 80, 80)
 func main() {
 	reader := bufio.NewReader(os.Stdin)
 
+	var t time.Time
+
 	for {
 		input, err := reader.ReadString('\n')
 		if err != nil && err == io.EOF {
-			println(input)
+			println(t, input)
 			break
 		}
 
-		println(input)
+		time, err := println(t, input)
+		if err == nil {
+			t = time
+		}
 	}
 }
 
-func println(input string) {
+func println(prev time.Time, input string) (time.Time, error) {
 	var msg message
 	err := json.Unmarshal([]byte(input), &msg)
 	if err != nil {
 		fmt.Print(input)
-		return
+		return time.Now(), err
 	}
 
 	t, err := time.Parse("2006-01-02T15:04:05.000-0700", msg.Time)
 	if err != nil {
 		fmt.Print(input)
-		return
+		return time.Now(), err
 	}
+
+	delta := t.Sub(prev)
 
 	var b strings.Builder
 
@@ -101,6 +108,10 @@ func println(input string) {
 		}
 	}
 
+	if !prev.IsZero() {
+		b.WriteString(superDim.Sprint(" Δ=" + delta.String()))
+	}
+
 	for k, v := range fields {
 		if k == "severity" || k == "time" || k == "message" || k == "caller" {
 			continue
@@ -135,4 +146,6 @@ func println(input string) {
 	}
 
 	fmt.Println(b.String())
+
+	return t, nil
 }
