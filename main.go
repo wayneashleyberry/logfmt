@@ -86,6 +86,16 @@ func main() {
 		var stacktrace string
 
 		for k, v := range fields {
+			m, ok := v.(map[string]interface{})
+			if ok {
+				for kk, vv := range m {
+					combined := k + "." + kk
+					fields[combined] = vv
+				}
+			}
+		}
+
+		for k, v := range fields {
 			if k == "severity" || k == "time" || k == "message" || k == "caller" {
 				continue
 			}
