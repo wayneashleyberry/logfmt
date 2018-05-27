@@ -21,4 +21,4 @@ go run app.go | logfmt
 
 ### Example
 
-<img width="1074" alt="screen shot 2018-05-27 at 11 55 58" src="https://user-images.githubusercontent.com/727262/40585113-ef77e266-61a4-11e8-9c1d-60307614b04c.png">
+<img width="1074" alt="screen shot 2018-05-27 at 12 27 47" src="https://user-images.githubusercontent.com/727262/40585374-67fe7a52-61a9-11e8-95a9-786df02f1913.png">
