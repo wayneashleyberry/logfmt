@@ -81,7 +81,7 @@ func main() {
 		b.WriteString(dim.Sprint(t.Format("2006-01-02 15:04:05 MST")))
 		b.WriteString(" ")
 		b.WriteString(white.Sprint(msg.Message))
-		b.WriteString(superDim.Sprint(" " + msg.Caller))
+		b.WriteString(superDim.Sprint(" [" + msg.Caller + "]"))
 
 		var stacktrace string
 
