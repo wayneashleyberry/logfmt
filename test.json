@@ -1,4 +1,4 @@
-{"severity":"debug","time":"2018-05-25T18:04:46.327+0100","caller":"go-lib/main.go:9","message":"Hello, World!"}
+{"severity":"debug","time":"2018-05-25T18:04:46.327+0100","caller":"go-lib/main.go:9","message":"Hello, World!","count":1}
 {"severity":"info","time":"2018-05-25T18:04:46.327+0100","caller":"go-lib/main.go:10","message":"Hello, World!"}
 {"severity":"warn","time":"2018-05-25T18:04:46.327+0100","caller":"go-lib/main.go:11","message":"Hello, World!","stacktrace":"main.main\n\t/Users/wayneberry/go/src/github.com/overhq/go-lib/main.go:11\nruntime.main\n\t/usr/local/Cellar/go/1.10.2/libexec/src/runtime/proc.go:198"}
 {"severity":"error","time":"2018-05-25T18:04:46.327+0100","caller":"go-lib/main.go:12","message":"Hello, World!","stacktrace":"main.main\n\t/Users/wayneberry/go/src/github.com/overhq/go-lib/main.go:12\nruntime.main\n\t/usr/local/Cellar/go/1.10.2/libexec/src/runtime/proc.go:198"}

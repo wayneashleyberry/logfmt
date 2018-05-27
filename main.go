@@ -16,6 +16,7 @@ type message struct {
 	Severity string `json:"severity"`
 	Time     string `json:"time"`
 	Message  string `json:"message"`
+	Caller   string `json:"caller"`
 }
 
 func main() {
@@ -58,7 +59,7 @@ func main() {
 
 		var b strings.Builder
 
-		var fields map[string]string
+		var fields map[string]interface{}
 		err = json.Unmarshal([]byte(input), &fields)
 
 		switch msg.Severity {
@@ -75,16 +76,37 @@ func main() {
 		default:
 			b.WriteString("[" + msg.Severity + "]")
 		}
+
 		b.WriteString(" ")
 		b.WriteString(dim.Sprint(t.String()))
 		b.WriteString(" ")
 		b.WriteString(white.Sprint(msg.Message))
+		b.WriteString(superDim.Sprint(" caller=" + msg.Caller))
+
+		var stacktrace string
 
 		for k, v := range fields {
-			if k == "severity" || k == "time" || k == "message" {
+			if k == "severity" || k == "time" || k == "message" || k == "caller" {
 				continue
 			}
-			b.WriteString(superDim.Sprint(" " + k + "=" + v))
+			if k == "stacktrace" {
+				stacktrace = v.(string)
+				continue
+			}
+
+			strval, stringok := v.(string)
+			if stringok {
+				b.WriteString(superDim.Sprint(" " + k + "=" + strval))
+			}
+
+			floatval, floatok := v.(float64)
+			if floatok {
+				b.WriteString(superDim.Sprint(" " + k + "=" + fmt.Sprintf("%.2f", floatval)))
+			}
+		}
+
+		if stacktrace != "" {
+			b.WriteString(superDim.Sprint("\n" + stacktrace))
 		}
 
 		fmt.Println(b.String())
