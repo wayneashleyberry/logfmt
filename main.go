@@ -142,7 +142,10 @@ func println(prev time.Time, input string) (time.Time, error) {
 	}
 
 	if stacktrace != "" {
-		b.WriteString(superDim.Sprint("\n" + stacktrace))
+		lines := strings.Split(stacktrace, "\n")
+		for _, line := range lines {
+			b.WriteString(superDim.Sprint("\n|>  " + line))
+		}
 	}
 
 	fmt.Println(b.String())
