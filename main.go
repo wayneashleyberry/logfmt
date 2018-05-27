@@ -1,3 +1,4 @@
+// Command logfmt is an opinionated log formatter
 package main
 
 import (
