@@ -2,6 +2,11 @@
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/wayneashleyberry/logfmt)](https://goreportcard.com/report/github.com/wayneashleyberry/logfmt)
 
+- `logfmt` reads from stdin and prints formatted logs
+- `logfmt` expects structured json with certain keys
+- `logfmt` formats output to be similar to Google Cloud Platform Logging
+
+
 ### Installation
 
 ```sh
