@@ -44,7 +44,7 @@ func main() {
 	for {
 		input, err := reader.ReadString('\n')
 		if err != nil && err == io.EOF {
-			println(t, input)
+			_, _ = println(t, input)
 			break
 		}
 
@@ -75,6 +75,10 @@ func println(prev time.Time, input string) (time.Time, error) {
 
 	var fields map[string]interface{}
 	err = json.Unmarshal([]byte(input), &fields)
+	if err != nil {
+		fmt.Print(input)
+		return time.Now(), err
+	}
 
 	switch msg.Severity {
 	case "debug":
