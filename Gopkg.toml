@@ -32,3 +32,7 @@
 [[constraint]]
   name = "github.com/wayneashleyberry/truecolor"
   version = "1.0.0"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/dustin/go-humanize"
