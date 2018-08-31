@@ -13,11 +13,31 @@ import (
 	"github.com/wayneashleyberry/truecolor/pkg/color"
 )
 
+// HTTPPayload does things
+type HTTPPayload struct {
+	RequestMethod                  string `json:"requestMethod"`
+	RequestURL                     string `json:"requestUrl"`
+	RequestSize                    string `json:"requestSize"`
+	Status                         int    `json:"status"`
+	ResponseSize                   string `json:"responseSize"`
+	UserAgent                      string `json:"userAgent"`
+	RemoteIP                       string `json:"remoteIp"`
+	ServerIP                       string `json:"serverIp"`
+	Referer                        string `json:"referer"`
+	Latency                        string `json:"latency"`
+	CacheLookup                    bool   `json:"cacheLookup"`
+	CacheHit                       bool   `json:"cacheHit"`
+	CacheValidatedWithOriginServer bool   `json:"cacheValidatedWithOriginServer"`
+	CacheFillBytes                 string `json:"cacheFillBytes"`
+	Protocol                       string `json:"protocol"`
+}
+
 type message struct {
-	Severity string `json:"severity"`
-	Time     string `json:"time"`
-	Message  string `json:"message"`
-	Caller   string `json:"caller"`
+	Severity    string      `json:"severity"`
+	Time        string      `json:"time"`
+	Message     string      `json:"message"`
+	Caller      string      `json:"caller"`
+	HTTPPayload HTTPPayload `json:"httpRequest"`
 }
 
 var cDebug = color.White().Background(76, 117, 217)
@@ -98,7 +118,11 @@ func println(prev time.Time, input string) (time.Time, error) {
 	b.WriteString(" ")
 	b.WriteString(dim.Sprint(t.Format("2006-01-02 15:04:05 MST")))
 	b.WriteString(" ")
-	b.WriteString(white.Sprint(msg.Message))
+	if msg.HTTPPayload.RequestURL != "" {
+		b.WriteString("...")
+	} else {
+		b.WriteString(white.Sprint(msg.Message))
+	}
 	b.WriteString(superDim.Sprint(" [" + msg.Caller + "]"))
 
 	var stacktrace string
