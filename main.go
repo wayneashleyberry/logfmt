@@ -142,7 +142,11 @@ func println(prev time.Time, input string) (time.Time, error) {
 
 		if msg.HTTPPayload.UserAgent != "" {
 			b.WriteString(" ")
-			b.WriteString(box.Sprint(msg.HTTPPayload.UserAgent[0:10]))
+			if len(msg.HTTPPayload.UserAgent) > 10 {
+				b.WriteString(box.Sprint(msg.HTTPPayload.UserAgent[0:10]))
+			} else {
+				b.WriteString(box.Sprint(msg.HTTPPayload.UserAgent))
+			}
 		}
 
 		b.WriteString(" ")
