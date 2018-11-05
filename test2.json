@@ -1,0 +1,2 @@
+{"severity":"info","time":"2018-11-05T17:30:00.119Z","caller":"middleware/logger.go:197","message":"[Your-Mother.local/tKXjMk8ZLt] GET http://localhost:3000/ HTTP/1.1 from [::1]:57823 - 200 13B in 0.000016111s","traceID":"","httpRequest":{"requestMethod":"GET","requestUrl":"http://localhost:3000/","requestSize":"","status":200,"responseSize":"13","userAgent":"curl/7.54.0","remoteIP":"[::1]:57823","serverIP":"","referer":"","latency":"0.000016111s","cacheLookup":false,"cacheHit":false,"cacheValidatedWithOriginServer":false,"cacheFillBytes":"","protocol":"HTTP/1.1"}}
+x

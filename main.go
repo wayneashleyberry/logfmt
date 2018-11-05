@@ -87,8 +87,14 @@ func println(prev time.Time, input string) (time.Time, error) {
 
 	t, err := time.Parse("2006-01-02T15:04:05.000-0700", msg.Time)
 	if err != nil {
-		fmt.Print(input)
-		return time.Now(), err
+		// UTC (Zulu) time
+		t2, err := time.Parse("2006-01-02T15:04:05.000Z", msg.Time)
+		if err == nil {
+			t = t2
+		} else {
+			fmt.Print(input)
+			return time.Now(), err
+		}
 	}
 
 	delta := t.Sub(prev)
