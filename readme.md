@@ -1,17 +1,13 @@
 > An opinionated log formatter that you probably don't want to use.
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/wayneashleyberry/logfmt)](https://goreportcard.com/report/github.com/wayneashleyberry/logfmt)
-[![GoDoc](https://godoc.org/github.com/wayneashleyberry/logfmt?status.svg)](https://godoc.org/github.com/wayneashleyberry/logfmt)
-
 - `logfmt` reads from stdin and prints formatted logs
 - `logfmt` expects structured json with certain keys
 - `logfmt` formats output to be similar to Google Cloud Platform Logging
 
-
 ### Installation
 
 ```sh
-go get -u github.com/wayneashleyberry/logfmt
+go get -u github.com/overhq/logfmt
 ```
 
 ### Usage
