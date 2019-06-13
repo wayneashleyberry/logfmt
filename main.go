@@ -143,7 +143,7 @@ func println(prev time.Time, input string) (time.Time, error) {
 			d, err := time.ParseDuration(msg.HTTPPayload.Latency)
 			if err == nil {
 				b.WriteString(" ")
-				b.WriteString(box.Sprint(fmt.Sprintf("%s", d)))
+				b.WriteString(box.Sprint(d.String()))
 			}
 		}
 
