@@ -114,6 +114,7 @@ func println(prev time.Time, input string) (time.Time, error) {
 	case "info":
 		b.WriteString(iconInfo)
 	case "warn":
+		fallthrough
 	case "warning":
 		b.WriteString(iconWarn)
 	case "error":
