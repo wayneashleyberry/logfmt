@@ -14,7 +14,7 @@ export PATH="$HOME/go/bin:$PATH"
 ```
 
 ```sh
-go get -u github.com/overhq/logfmt
+go get -u github.com/wayneashleyberry/logfmt
 ```
 
 ### Usage

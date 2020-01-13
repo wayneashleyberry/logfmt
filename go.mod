@@ -1,4 +1,4 @@
-module github.com/overhq/logfmt
+module github.com/wayneashleyberry/logfmt
 
 go 1.13
 
